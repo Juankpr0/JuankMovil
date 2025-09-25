@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+		
+		<EditText
+				android:id="@+id/edtNombreProducto"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Nombre del producto"/>
+		
+		<EditText
+				android:id="@+id/edtPrecioProducto"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Precio"
+				android:inputType="numberDecimal"/>
+		
+		<EditText
+				android:id="@+id/edtStockProducto"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Stock"
+				android:inputType="number"/>
+		
+		<EditText
+				android:id="@+id/edtUrlImagen"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="URL de la imagen"/>
+		
+		<Button
+				android:id="@+id/btnGuardarProducto"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Guardar Producto"/>
+	</LinearLayout>
+</ScrollView>

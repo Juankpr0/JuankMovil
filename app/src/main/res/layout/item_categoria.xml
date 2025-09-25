@@ -1,0 +1,39 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_margin="8dp"
+                                   card_view:cardCornerRadius="16dp"
+                                   card_view:cardElevation="6dp"
+                                   android:foreground="?attr/selectableItemBackground">
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="16dp">
+		
+		<!-- Nombre de la categoría -->
+		<TextView
+				android:id="@+id/txtNombreCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Nombre de la categoría"
+				android:textColor="#2C3E50"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:gravity="center" />
+		
+		<!-- Descripción de la categoría -->
+		<TextView
+				android:id="@+id/txtDescripcionCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="Descripción de la categoría"
+				android:textColor="#7F8C8D"
+				android:textSize="14sp"
+				android:gravity="center" />
+	
+	</LinearLayout>
+</androidx.cardview.widget.CardView>
