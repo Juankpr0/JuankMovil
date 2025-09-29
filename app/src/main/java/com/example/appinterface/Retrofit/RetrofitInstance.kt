@@ -7,16 +7,25 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
+
     private const val BASE_URL = "http://10.0.2.2:8081/"
 
-    val apiProducto: ApiProducto by lazy { create(ApiProducto::class.java) }
-    val ApiCategoria: ApiCategoria by lazy { create(ApiCategoria::class.java) }
-    val ApiUsuario: ApiUsuario by lazy { create(ApiUsuario::class.java) }
-
-    private fun <T> create(service: Class<T>): T =
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(service)
+    }
+
+    val apiProducto: ApiProducto by lazy {
+        retrofit.create(ApiProducto::class.java)
+    }
+
+    val apiCategoria: ApiCategoria by lazy {
+        retrofit.create(ApiCategoria::class.java)
+    }
+
+    val apiUsuario: ApiUsuario by lazy {
+        retrofit.create(ApiUsuario::class.java)
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.appinterface.Actividades
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,18 +17,28 @@ import retrofit2.Response
 
 class CategoriaActivity : AppCompatActivity() {
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var btnAgregarCategoria: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categorias)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerCategorias)
+        recyclerView = findViewById(R.id.recyclerCategorias)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Inicializar adapter vacío
         recyclerView.adapter = CategoriaAdapter(emptyList())
 
-        // Llamada a la API para obtener categorías
-        RetrofitInstance.ApiCategoria.getCategorias().enqueue(object : Callback<List<Categoria>> {
+        btnAgregarCategoria = findViewById(R.id.btnAgregarCategoria)
+        btnAgregarCategoria.setOnClickListener {
+            val intent = Intent(this, FormCategoriaActivity::class.java)
+            startActivity(intent)
+        }
+
+        cargarCategorias()
+    }
+
+    private fun cargarCategorias() {
+        RetrofitInstance.apiCategoria.getCategorias().enqueue(object : Callback<List<Categoria>> {
             override fun onResponse(call: Call<List<Categoria>>, response: Response<List<Categoria>>) {
                 if (response.isSuccessful) {
                     val categorias = response.body()

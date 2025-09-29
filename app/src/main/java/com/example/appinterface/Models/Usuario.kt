@@ -7,6 +7,6 @@ data class Usuario(
     var nombre: String,
     var email: String,
     var password: String,
-    var rol: String,
+    var rol: String = "usuario",
     var activo: Boolean = true
 ) : Serializable

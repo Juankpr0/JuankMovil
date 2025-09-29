@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="24dp"
+            android:background="@android:color/white">
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+		
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Nueva Categoría"
+				android:textSize="26sp"
+				android:textStyle="bold"
+				android:textColor="@android:color/black"
+				android:layout_marginBottom="24dp" />
+		
+		<EditText
+				android:id="@+id/edtNombreCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Nombre de la categoría"
+				android:padding="12dp"
+				android:background="@drawable/rounded_edittext"
+				android:layout_marginBottom="16dp"
+				android:textColor="@android:color/black"
+				android:textSize="16sp"/>
+		
+		<EditText
+				android:id="@+id/edtDescripcionCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Descripción"
+				android:padding="12dp"
+				android:background="@drawable/rounded_edittext"
+				android:layout_marginBottom="24dp"
+				android:textColor="@android:color/black"
+				android:textSize="16sp"/>
+		
+		<Button
+				android:id="@+id/btnGuardarCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Guardar Categoría"
+				android:textAllCaps="false"
+				android:textColor="@android:color/white"
+				android:padding="12dp"
+				android:layout_marginTop="8dp"/>
+	
+	</LinearLayout>
+</ScrollView>

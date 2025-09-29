@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		  xmlns:tools="http://schemas.android.com/tools">
+          xmlns:tools="http://schemas.android.com/tools">
+	
 	<uses-permission android:name="android.permission.INTERNET" />
+	
 	<application
 			android:allowBackup="true"
 			android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +14,7 @@
 			tools:targetApi="31">
 		
 		<activity
-				android:name="com.example.appinterface.MainActivity"
+				android:name=".InicioActivity"
 				android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -20,11 +22,14 @@
 			</intent-filter>
 		</activity>
 		
-		<activity android:name=".Actividades.ProductoActivity" android:exported="false"/>
+		<activity android:name=".MainActivity" android:exported="false"/>
 		<activity android:name=".Actividades.UsuarioActivity" android:exported="false"/>
+		<activity android:name=".Actividades.FormUsuarioActivity" android:exported="false"/>
 		<activity android:name=".Actividades.CategoriaActivity" android:exported="false"/>
+		<activity android:name=".Actividades.FormCategoriaActivity" android:exported="false"/>
+		<activity android:name=".Actividades.ProductoActivity" android:exported="false"/>
+		<activity android:name=".Actividades.FormProductoActivity" android:exported="false"/>
 	
 	</application>
-
 
 </manifest>

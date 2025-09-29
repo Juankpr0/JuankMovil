@@ -7,38 +7,42 @@
 	<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:divider="?android:attr/dividerHorizontal"
+			android:showDividers="middle">
 		
 		<EditText
 				android:id="@+id/edtNombreProducto"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:hint="Nombre del producto"/>
+				android:hint="Nombre del producto"
+				android:inputType="textCapWords" />
 		
 		<EditText
 				android:id="@+id/edtPrecioProducto"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="Precio"
-				android:inputType="numberDecimal"/>
+				android:inputType="numberDecimal" />
 		
 		<EditText
 				android:id="@+id/edtStockProducto"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="Stock"
-				android:inputType="number"/>
+				android:inputType="number" />
 		
 		<EditText
 				android:id="@+id/edtUrlImagen"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:hint="URL de la imagen"/>
+				android:hint="URL de la imagen"
+				android:inputType="textUri" />
 		
 		<Button
 				android:id="@+id/btnGuardarProducto"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Guardar Producto"/>
+				android:text="Guardar Producto" />
 	</LinearLayout>
 </ScrollView>

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoriaAdapter(private val categorias: List<Categoria>) :
+class CategoriaAdapter(private var categorias: List<Categoria>) :
     RecyclerView.Adapter<CategoriaAdapter.CategoriaViewHolder>() {
 
     class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,10 +22,16 @@ class CategoriaAdapter(private val categorias: List<Categoria>) :
 
     override fun onBindViewHolder(holder: CategoriaViewHolder, position: Int) {
         val categoria = categorias[position]
-
-        holder.nombre.text = categoria.nombre
-        holder.descripcion.text = categoria.descripcion ?: "Sin descripción"
+        holder.apply {
+            nombre.text = categoria.nombre
+            descripcion.text = categoria.descripcion ?: "Sin descripción"
+        }
     }
 
     override fun getItemCount(): Int = categorias.size
+
+    fun actualizarLista(nuevaLista: List<Categoria>) {
+        categorias = nuevaLista
+        notifyDataSetChanged()
+    }
 }

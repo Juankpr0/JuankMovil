@@ -5,19 +5,19 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiUsuario {
-
-    @GET("api/users")
+    @GET("api/user")
     fun getUsers(): Call<List<Usuario>>
 
-    @GET("api/users/{id}")
-    fun getUserById(@Path("id") id: Long): Call<Usuario>
+    @GET("api/user/{id}")
+    fun getUser(@Path("id") id: Long): Call<Usuario>
 
-    @POST("api/users")
+    @POST("api/user")
     fun createUser(@Body usuario: Usuario): Call<Void>
 
-    @PUT("api/users/{id}")
+    @PUT("api/user/{id}")
     fun updateUser(@Path("id") id: Long, @Body usuario: Usuario): Call<Void>
 
-    @DELETE("api/users/{id}")
+    @DELETE("api/user/{id}")
     fun deleteUser(@Path("id") id: Long): Call<Void>
 }
+
