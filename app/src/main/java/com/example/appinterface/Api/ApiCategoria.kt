@@ -9,9 +9,6 @@ interface ApiCategoria {
     @GET("api/categorias")
     fun getCategorias(): Call<List<Categoria>>
 
-    @GET("api/categorias/{id}")
-    fun getCategoriaById(@Path("id") id: Long): Call<Categoria>
-
     @POST("api/categorias")
     fun createCategoria(@Body categoria: Categoria): Call<Void>
 
