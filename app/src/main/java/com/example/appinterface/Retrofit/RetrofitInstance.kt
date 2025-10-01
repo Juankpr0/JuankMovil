@@ -17,12 +17,12 @@ object RetrofitInstance {
             .build()
     }
 
-    val apiProducto: ApiProducto by lazy {
-        retrofit.create(ApiProducto::class.java)
-    }
-
     val apiCategoria: ApiCategoria by lazy {
         retrofit.create(ApiCategoria::class.java)
+    }
+
+    val apiProducto: ApiProducto by lazy {
+        retrofit.create(ApiProducto::class.java)
     }
 
     val apiUsuario: ApiUsuario by lazy {
