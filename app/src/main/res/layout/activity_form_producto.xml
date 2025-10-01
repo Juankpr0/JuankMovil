@@ -39,10 +39,22 @@
 				android:hint="URL de la imagen"
 				android:inputType="textUri" />
 		
+		<Spinner
+				android:id="@+id/spinnerCategoria"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+		
 		<Button
 				android:id="@+id/btnGuardarProducto"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:text="Guardar Producto" />
+		
+		<ProgressBar
+				android:id="@+id/progressBar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:visibility="gone"/>
 	</LinearLayout>
 </ScrollView>
