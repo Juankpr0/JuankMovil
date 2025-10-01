@@ -5,9 +5,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appinterface.Categoria
 import com.example.appinterface.R
 import com.example.appinterface.Retrofit.RetrofitInstance
-import com.example.appinterface.Categoria
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +17,7 @@ class FormCategoriaActivity : AppCompatActivity() {
     private lateinit var edtNombre: EditText
     private lateinit var edtDescripcion: EditText
     private lateinit var btnGuardar: Button
+    private var categoriaId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,16 @@ class FormCategoriaActivity : AppCompatActivity() {
         edtNombre = findViewById(R.id.edtNombreCategoria)
         edtDescripcion = findViewById(R.id.edtDescripcionCategoria)
         btnGuardar = findViewById(R.id.btnGuardarCategoria)
+
+        categoriaId = intent.getLongExtra("categoria_id", -1L).takeIf { it != -1L }
+        val nombre = intent.getStringExtra("nombre")
+        val descripcion = intent.getStringExtra("descripcion")
+
+        if (categoriaId != null) {
+            edtNombre.setText(nombre)
+            edtDescripcion.setText(descripcion)
+            btnGuardar.text = "Actualizar"
+        }
 
         btnGuardar.setOnClickListener { guardarCategoria() }
     }
@@ -39,19 +50,27 @@ class FormCategoriaActivity : AppCompatActivity() {
         }
 
         val categoria = Categoria(
-            id = 0,
+            id = categoriaId,
             nombre = nombre,
             descripcion = descripcion
         )
 
-        RetrofitInstance.apiCategoria.createCategoria(categoria).enqueue(object : Callback<Void> {
+        val call: Call<Void> = if (categoriaId == null) {
+            RetrofitInstance.apiCategoria.createCategoria(categoria)
+        } else {
+            RetrofitInstance.apiCategoria.updateCategoria(categoriaId!!, categoria)
+        }
+
+        call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@FormCategoriaActivity, "Categoría creada", Toast.LENGTH_SHORT).show()
+                    val msg = if (categoriaId == null) "Categoría creada" else "Categoría actualizada"
+                    Toast.makeText(this@FormCategoriaActivity, msg, Toast.LENGTH_SHORT).show()
                     setResult(RESULT_OK)
                     finish()
                 } else {
-                    Toast.makeText(this@FormCategoriaActivity, "Error: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    val errorMsg = response.errorBody()?.string() ?: "Error desconocido"
+                    Toast.makeText(this@FormCategoriaActivity, "Error: ${response.code()} - $errorMsg", Toast.LENGTH_LONG).show()
                 }
             }
 
