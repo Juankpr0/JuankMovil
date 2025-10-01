@@ -48,7 +48,20 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val productos = response.body()
                     if (!productos.isNullOrEmpty()) {
-                        recyclerView.adapter = ProductoAdapter(productos)
+                        // Aquí se pasa el listener obligatorio
+                        recyclerView.adapter = ProductoAdapter(productos, object : ProductoAdapter.OnProductoClickListener {
+                            override fun onEditarClick(producto: Producto) {
+                                // Acción al editar un producto
+                                Toast.makeText(this@MainActivity, "Editar: ${producto.nombre}", Toast.LENGTH_SHORT).show()
+                                // Aquí podrías abrir FormProductoActivity con el producto para editar
+                            }
+
+                            override fun onEliminarClick(producto: Producto) {
+                                // Acción al eliminar un producto
+                                Toast.makeText(this@MainActivity, "Eliminar: ${producto.nombre}", Toast.LENGTH_SHORT).show()
+                                // Aquí podrías llamar a tu API para eliminar el producto y recargar la lista
+                            }
+                        })
                     } else {
                         Toast.makeText(this@MainActivity, "No hay productos disponibles", Toast.LENGTH_SHORT).show()
                     }

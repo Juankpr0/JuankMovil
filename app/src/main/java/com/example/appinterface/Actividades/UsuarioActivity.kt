@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UsuarioActivity : AppCompatActivity() {
+class UsuarioActivity : AppCompatActivity(), UsuarioAdapter.OnUsuarioClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var usuarioAdapter: UsuarioAdapter
@@ -30,8 +30,7 @@ class UsuarioActivity : AppCompatActivity() {
 
         btnAgregarUsuario = findViewById(R.id.btnAgregarUsuario)
         btnAgregarUsuario.setOnClickListener {
-            val intent = Intent(this, FormUsuarioActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, FormUsuarioActivity::class.java))
         }
 
         obtenerUsuarios()
@@ -42,7 +41,7 @@ class UsuarioActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>) {
                 if (response.isSuccessful) {
                     val usuarios = response.body() ?: emptyList()
-                    usuarioAdapter = UsuarioAdapter(usuarios)
+                    usuarioAdapter = UsuarioAdapter(usuarios, this@UsuarioActivity)
                     recyclerView.adapter = usuarioAdapter
                 } else {
                     Toast.makeText(this@UsuarioActivity, "Error al obtener usuarios", Toast.LENGTH_SHORT).show()
@@ -55,8 +54,35 @@ class UsuarioActivity : AppCompatActivity() {
         })
     }
 
+    override fun onEditarClick(usuario: Usuario) {
+        val intent = Intent(this, FormUsuarioActivity::class.java)
+        intent.putExtra("usuario_id", usuario.id)
+        intent.putExtra("nombre", usuario.nombre)
+        intent.putExtra("email", usuario.email)
+        intent.putExtra("rol", usuario.rol)
+        intent.putExtra("activo", usuario.activo)
+        startActivity(intent)
+    }
+
+    override fun onEliminarClick(usuario: Usuario) {
+        RetrofitInstance.apiUsuario.deleteUser(usuario.id!!).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@UsuarioActivity, "Usuario eliminado", Toast.LENGTH_SHORT).show()
+                    obtenerUsuarios()
+                } else {
+                    Toast.makeText(this@UsuarioActivity, "Error al eliminar: ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(this@UsuarioActivity, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     override fun onResume() {
         super.onResume()
-        obtenerUsuarios() // 🔄 recargar la lista al volver del formulario
+        obtenerUsuarios() // 🔄 recargar lista al volver del formulario
     }
 }
