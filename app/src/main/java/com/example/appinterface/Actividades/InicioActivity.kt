@@ -14,16 +14,20 @@ class InicioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Ejemplo de botones para abrir secciones
-        findViewById<Button>(R.id.btnUsuarios).setOnClickListener {
+        // Botones para abrir secciones
+        val btnUsuarios: Button = findViewById(R.id.btnUsuarios)
+        val btnCategorias: Button = findViewById(R.id.btnCategorias)
+        val btnProductos: Button = findViewById(R.id.btnProductos)
+
+        btnUsuarios.setOnClickListener {
             startActivity(Intent(this, UsuarioActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnCategorias).setOnClickListener {
+        btnCategorias.setOnClickListener {
             startActivity(Intent(this, CategoriaActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnProductos).setOnClickListener {
+        btnProductos.setOnClickListener {
             startActivity(Intent(this, ProductoActivity::class.java))
         }
     }
