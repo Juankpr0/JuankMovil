@@ -16,21 +16,23 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnAgregarCategoria"
-            app:layout_constraintTop_toTopOf="parent"
             android:ellipsize="end"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"/>
     
     <Button
             android:id="@+id/btnAgregarCategoria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="109dp"
+            android:layout_height="43dp"
             android:text="Agregar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textViewCategorias"
-            app:layout_constraintBottom_toBottomOf="@id/textViewCategorias"/>
-    
+            app:layout_constraintBottom_toBottomOf="@id/textViewCategorias" app:layout_constraintVertical_bias="0.0"/>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerCategorias"
             android:layout_width="0dp"
